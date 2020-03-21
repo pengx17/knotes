@@ -73,6 +73,7 @@ export const NoteContentView: React.FC<{
         value={meta.title}
         css={{ marginBottom: '12px' }}
         placeholder="Add a title here"
+        label="Title"
         onChange={e => updateMeta({ title: (e.target as any).value })}
       />
       {internalContent && internalContent?.content ? (
@@ -83,7 +84,7 @@ export const NoteContentView: React.FC<{
       ) : (
         undefined
       )}
-      <div css={{ height: '1em' }} />
+      <div css={{ height: '0.5em' }} />
       <Footer meta={meta} />
     </div>
   );

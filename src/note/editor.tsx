@@ -37,8 +37,8 @@ export const Button: React.FC<any> = React.forwardRef(({ ...props }, ref) => (
     {...props}
     ref={ref}
     css={css`
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
       display: flex;
       align-items: center;

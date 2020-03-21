@@ -34,7 +34,7 @@ const useFirestoreDoc = <T>(uid: string, path: string, docPath: string) =>
 const defaultContent = [
   {
     type: 'paragraph',
-    children: [{ text: 'A line of text in a paragraph.' }]
+    children: [{ text: '' }]
   }
 ];
 
