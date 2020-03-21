@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppContext } from './app-context';
+import { Auth } from './firebase';
+import { MainLayout } from './layout/main';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const AppWithUser: React.FC<{
+  user: firebase.User;
+  signOut: () => void;
+}> = ({ user, signOut }) => {
+  const context = React.useMemo(
+    () => ({
+      user,
+      signOut
+    }),
+    [user, signOut]
   );
-}
+  return (
+    <AppContext.Provider value={context}>
+      <MainLayout />
+    </AppContext.Provider>
+  );
+};
 
-export default App;
+export const App = () => {
+  return (
+    <Router>
+      <Auth>
+        {({ user, signOut }) => <AppWithUser user={user} signOut={signOut} />}
+      </Auth>
+    </Router>
+  );
+};
